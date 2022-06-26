@@ -33,8 +33,8 @@
                     <div class="col info-1 text-left">
                         <b>DIU:</b>
                       </div>
-                      <div class="col info-2 text-right" >
-                        {{usuario.identificacion}}
+                      <div  class="col info-2 text-right" >
+                        {{ usuario.identificacion?.substring(0, 9) + '-' + usuario.identificacion?.substring(9, 10)}}
                       </div>
                 </div>
             </div>
