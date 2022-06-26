@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
   public newUsuarios: Usuario[];
   public img: string;
   public id: string;
+  public edadU: number;
   currentInput = '';
 
   constructor(
@@ -34,6 +35,7 @@ export class UserComponent implements OnInit {
     this.img = '';
     let id = this.route.snapshot.paramMap.get('id') !== null ? this.route.snapshot.paramMap.get('id') : '';
     this.id = id ? id : '';
+    this.edadU = 0;
   }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class UserComponent implements OnInit {
       this.usuario = JSON.parse(user);
       this.img = this.usuario.img ? this.usuario.img : '';
       this.currentInput = this.usuario.selectImg ? this.usuario.selectImg : '';
+      this.edadU = this.usuario.edad ? parseInt(this.usuario.edad) : 0;
     } else {
       this.usuario = {
         id: '',

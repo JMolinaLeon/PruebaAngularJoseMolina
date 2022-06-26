@@ -7,6 +7,25 @@
 .title{
     color: $text;
 }
+
+.info-1{
+
+    color:  $color-primary;
+    font-size: 1rem;
+    margin-left: -0.5vh;
+    width: 20vh !important;
+    padding: 0 !important;
+}
+
+.info-2{
+
+    color:  $color-primary;
+    font-size: 1rem;
+    margin-right: -0.5vh;
+    width: 20vh !important;
+    padding: 0 !important;
+}
+
 p{
     color: $dark-gray;
 }
@@ -129,4 +148,8 @@ search_select_box{
     
     .ng-autocomplete ::ng-deep .autocomplete-container ::ng-deep .not-found {
     border: 0;
+    }
+
+    .nombre-usuario{
+        color: $color-primary;
     }

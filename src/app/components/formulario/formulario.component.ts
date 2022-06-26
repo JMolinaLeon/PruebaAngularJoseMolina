@@ -158,7 +158,7 @@ data = [
       let url = '/user/' + this.usuario.id;
       ident = this.usuario.identificacion?.split("_")[0];
       this.usuario.identificacion = ident;
-      //this.router.navigateByUrl(url);
+      this.router.navigateByUrl(url);
     }
   }
 
@@ -170,6 +170,21 @@ data = [
       this.img = reader.result as string;
       this.currentInput = event.target.files[0].name;
     };
+  }
+
+  identificacion(e: any){
+    let ident = this.usuario.identificacion?.split("_")[0];
+    let ide = "";
+      if(ident !== "Carnet de minoridad"){
+        console.log("identificacion", e, "tama;o", this.usuario.identificacion?.length);
+        if(this.usuario.identificacion?.length == 8){
+          console.log("identificacion", e, "tama;o", "8");
+          ide = this.usuario.identificacion + "-";
+          console.log("identificacion", e, "tama;o", "8",ide);
+          this.usuario.identificacion.concat('-');
+        }
+        this.usuario.identificacion = ide;
+      }
   }
 
   public clearImg(){

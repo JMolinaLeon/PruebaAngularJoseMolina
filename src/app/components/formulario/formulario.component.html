@@ -29,7 +29,7 @@
   </div>
   <div class="col-6 justify-content-center">
     <div >
-      <span class="title" style="font-size: 25px;">
+      <span class="title" style="font-size: 13px;">
        Tu información
       </span>
       <p > Conpleta la siguiente información <br>
@@ -90,7 +90,7 @@
         <div class="form-group">
           <div  style="width: 100%; margin-bottom: 20px;">
             <label  *ngIf="usuario.identificacion !== '' ? true : false" class="label-formulario"><b>Diu*</b></label>
-            <input type="text"  [(ngModel)]='usuario.identificacion' formControlName="identificacion"
+            <input type="text" (ngModelChange)="identificacion($event);"  [(ngModel)]='usuario.identificacion' formControlName="identificacion"
              class="form-control" style="height: 5vh; font-size: 13px;"  
              [ngClass]="usuario.identificacion !== '' ? 'input-form-1' : 'input-form-2' " 
              [placeholder]="edadU > 18 || usuario.edad == '' ? 'Documento' : 'Carnet de minoridad' "/>

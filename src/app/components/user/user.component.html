@@ -9,19 +9,34 @@
       <div class="card-perfil">
         <div class="card-body">
           <div class="d-flex flex-column align-items-center text-center">
-            <span style="color: white; font-size: 26px; margin: 20px; "> Imagen Perfil</span>
+            <span class="nombre-usuario" style=" font-size: 26px; margin: 20px; "> {{usuario.nombre}} </span>
             <img  *ngIf="img === '' ? true : false"  src="../../../assets/images/perfil.jpg" alt="Admin" class="rounded-circle" width="150" height="150">
             <img  *ngIf="img !== '' ? true : false"  [src]="img" alt="Admin" class="rounded-circle" width="150" height="150" />
-            <div class="mb-4 mt-4">
-              <div class="inner-addon right-addon" style="width: 100%;">
-                <input type="text" class="input-foto form-control" style="height: 8vh; font-size: 15px;" [placeholder]="currentInput !== '' ? currentInput : 'Adjunta una foto'" />
-                <input *ngIf="img === '' ? true : false"   type="file" [(ngModel)]="currentInput" (change)="handleUpload($event)" class="input-foto form-control" 
-                style="position: absolute; margin-left: 24vh; margin-top: -50px; background-color:transparent; opacity: 0.0; "   />
-                <button  *ngIf="img !== '' ? true : false" type="button" class="btn"  style="width: 30px; margin-left: 25vh;
-                 margin-top: -80px; height: 30px;" (click)="clearImg()"><i class="bi bi-trash" 
-                  style="margin-top: -25px; color: red;"></i></button>
-                <i *ngIf="img === '' ? true : false" class="bi bi-upload" style="color: green; margin-top: -50px;"></i>
-              </div>
+            <div class="mt-4" style="margin: 0; padding: 0;">
+                <div class="row" style="margin: 0; padding: 0;">
+                    <div class="col info-1 text-left">
+                        <b>Pasatiempo:</b>
+                      </div>
+                      <div class="col info-2 text-right" >
+                        {{usuario.pasatiempo}}
+                      </div>
+                </div>
+                <div class="row" style="margin: 0; padding: 0;">
+                    <div class="col info-1 text-left">
+                        <b>Edad:</b>
+                      </div>
+                      <div class="col info-2 text-right" >
+                        {{usuario.edad}}
+                      </div>
+                </div>
+                <div  *ngIf="edadU > 18 ? true : false" class="row" style="margin: 0; padding: 0;">
+                    <div class="col info-1 text-left">
+                        <b>DIU:</b>
+                      </div>
+                      <div class="col info-2 text-right" >
+                        {{usuario.identificacion}}
+                      </div>
+                </div>
             </div>
           </div>
         </div>
@@ -37,67 +52,12 @@
       <div style="width: 40vh;">
         <form role="form" (ngSubmit)="saveData()" [formGroup]="miFormulario"
         autocomplete="off"  >
-          <div class="form-group">
-            <div  style="width: 100%; margin-bottom: 20px;">
-              <label *ngIf="usuario.nombre !== '' ? true : false" class="label-formulario"><b>Nombre*</b></label>
-              <input type="text"  [(ngModel)]='usuario.nombre'
-              class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Nombre" formControlName="nombre"
-              [ngClass]="usuario.nombre !== '' ? 'input-form-1' : 'input-form-2' "/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div  style="width: 100%; margin-bottom: 20px;">
-              <input type="hidden" [(ngModel)]='usuario.pasatiempo'
-              class="input-form form-control" style="height: 5vh; font-size: 13px;" placeholder="Nombre" formControlName="pasatiempo"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div  style="width: 100%; margin-bottom: 20px;">
-              <label *ngIf="usuario.pasatiempo !== '' ? true : false" class="label-formulario"><b>Pasatiempo Favorito*</b></label>
-              <div  style="width:  40vh; margin-bottom: 20px;" class="form-control"
-              [ngClass]="usuario.pasatiempo !== '' ? 'input-form-1' : 'input-form-2' ">
-                <div class="ng-autocomplete" style="width: 100%; height: 20px; padding: 0px; margin: 0px;" >
-                  <ng-autocomplete
-                    [data]="data"
-                    [searchKeyword]="keyword"
-                    [placeholder]="usuario.pasatiempo ? usuario.pasatiempo : 'Pasatiempo Favorito'"
-                    (selected)='selectEvent($event)'
-                    [itemTemplate]="itemTemplate"
-                    (inputCleared)="searchCleared()"
-                    [notFoundTemplate]="notFoundTemplate">
-                  </ng-autocomplete>
-  
-                  <ng-template #itemTemplate let-item >
-                  <a [innerHTML]="item.name"></a>
-                  </ng-template>
-  
-                  <ng-template #notFoundTemplate let-notFound>
-                  <div [innerHTML]="notFound"></div>
-                  </ng-template>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div  style="width: 100%;  margin-bottom: 20px;">
-              <label *ngIf="usuario.fecha !== '' ? true : false" class="label-formulario"><b>Cumpleaños*</b></label>
-              <input type="date"  [(ngModel)]='usuario.fecha' formControlName="fecha"
-              class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Cumpleaños"
-              [ngClass]="usuario.fecha !== '' ? 'input-form-1' : 'input-form-2' " />
-            </div>
-          </div>
-          <div class="form-group">
-            <div  style="width: 100%; margin-bottom: 20px;">
-              <label  *ngIf="usuario.identificacion !== '' ? true : false" class="label-formulario"><b>Diu*</b></label>
-              <input type="text"  [(ngModel)]='usuario.identificacion' formControlName="identificacion"
-               class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Documento"
-               [ngClass]="usuario.identificacion !== '' ? 'input-form-1' : 'input-form-2' "/>
-            </div>
-          </div>
+
+          
           <div class="form-group">
             <div  style="width: 100%;  margin-bottom: 20px;">
             <button type="submit"
-            [ngClass]="miFormulario.status == 'VALID' ? 'btn btn-primary' : 'btn btn-secondary' "  >
+            >
               Continuar
             </button>
           </div>
