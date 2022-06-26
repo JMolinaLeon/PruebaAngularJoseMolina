@@ -5,7 +5,9 @@ export class Usuario {
         public pasatiempo?: string,
         public edad?: string,
         public identificacion?: string,
-        public fecha?: string
+        public fecha?: string,
+        public img?: string,
+        public selectImg?: string
     ) {
     }
 }

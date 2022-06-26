@@ -19,17 +19,22 @@ export class FormularioComponent implements OnInit {
   public usuario: Usuario;
   public usuarios: Usuario[];
   public newUsuarios: Usuario[];
+  public img: string;
+  currentInput = '';
 
   constructor(private fb: FormBuilder) {
     this.usuario = new Usuario();
     this.usuarios = [];
     this.newUsuarios = [];
+    this.img = '';
   }
 
   ngOnInit(): void {
     let user = localStorage.getItem('User');
     if(user){
-      this.usuario = JSON.parse(user) ;
+      this.usuario = JSON.parse(user);
+      this.img = this.usuario.img ? this.usuario.img : '';
+      this.currentInput = this.usuario.selectImg ? this.usuario.selectImg : '';
     } else {
       this.usuario = {
         id: '',
@@ -37,7 +42,9 @@ export class FormularioComponent implements OnInit {
         pasatiempo: '',
         edad: '',
         identificacion: '',
-        fecha: ''
+        fecha: '',
+        img: '',
+        selectImg: ''
       }
     }
     let usuarios = localStorage.getItem('Usuarios');
@@ -69,6 +76,9 @@ data = [
 
   saveData(){
     if(this.miFormulario.valid) {
+
+      this.usuario.img = this.img;
+      this.usuario.selectImg = this.currentInput;
 
       let usuarios = localStorage.getItem('Usuarios');
       if(usuarios){
@@ -102,6 +112,21 @@ data = [
       localStorage.setItem("User", JSON.stringify(this.usuario))
       localStorage.setItem("Usuarios", JSON.stringify(this.newUsuarios))
     }
+  }
+
+  handleUpload(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.img = reader.result as string;
+      this.currentInput = event.target.files[0].name;
+    };
+  }
+
+  public clearImg(){
+    this.img = '';
+    this.currentInput = '';
   }
 
 }

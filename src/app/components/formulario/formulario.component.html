@@ -10,11 +10,17 @@
       <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
           <span style="color: white; font-size: 26px; margin: 20px; "> Imagen Perfil</span>
-          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+          <img  *ngIf="img === '' ? true : false"  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150" height="150">
+          <img  *ngIf="img !== '' ? true : false"  [src]="img" alt="Admin" class="rounded-circle" width="150" height="150" />
           <div class="mb-4 mt-4">
             <div class="inner-addon right-addon" style="width: 100%;">
-              <i class="bi bi-trash" style="color: red;"></i>
-              <input type="text" class="input-foto form-control" style="height: 8vh; font-size: 15px;" placeholder="Adjunta una foto" />
+              <input type="text" class="input-foto form-control" style="height: 8vh; font-size: 15px;" [placeholder]="currentInput !== '' ? currentInput : 'Adjunta una foto'" />
+              <input *ngIf="img === '' ? true : false"   type="file" [(ngModel)]="currentInput" (change)="handleUpload($event)" class="input-foto form-control" 
+              style="position: absolute; margin-left: 24vh; margin-top: -50px; background-color:transparent; opacity: 0.0; "   />
+              <button  *ngIf="img !== '' ? true : false" type="button" class="btn"  style="width: 30px; margin-left: 25vh;
+               margin-top: -80px; height: 30px;" (click)="clearImg()"><i class="bi bi-trash" 
+                style="margin-top: -25px; color: red;"></i></button>
+              <i *ngIf="img === '' ? true : false" class="bi bi-upload" style="color: green; margin-top: -50px;"></i>
             </div>
           </div>
         </div>
