@@ -91,7 +91,6 @@
               <label  *ngIf="usuario.identificacion !== '' ? true : false" class="label-formulario"><b>Diu*</b></label>
               <input type="text"  [(ngModel)]='usuario.identificacion' formControlName="identificacion"
                class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Documento"
-               [placeholder]="usuario.edad !== '' ? currentInput : 'Adjunta una foto'" 
                [ngClass]="usuario.identificacion !== '' ? 'input-form-1' : 'input-form-2' "/>
             </div>
           </div>

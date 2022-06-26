@@ -91,8 +91,9 @@
           <div  style="width: 100%; margin-bottom: 20px;">
             <label  *ngIf="usuario.identificacion !== '' ? true : false" class="label-formulario"><b>Diu*</b></label>
             <input type="text"  [(ngModel)]='usuario.identificacion' formControlName="identificacion"
-             class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Documento"
-             [ngClass]="usuario.identificacion !== '' ? 'input-form-1' : 'input-form-2' "/>
+             class="form-control" style="height: 5vh; font-size: 13px;" 
+             [ngClass]="usuario.identificacion !== '' ? 'input-form-1' : 'input-form-2' " 
+             [placeholder]="edadU > 18 || usuario.edad == '' ? 'Documento' : 'Carnet de minoridad' "/>
           </div>
         </div>
         <div class="form-group">

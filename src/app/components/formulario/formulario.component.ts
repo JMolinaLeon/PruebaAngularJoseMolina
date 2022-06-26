@@ -21,6 +21,7 @@ export class FormularioComponent implements OnInit {
   public usuarios: Usuario[];
   public newUsuarios: Usuario[];
   public img: string;
+  public edadU: number;
   currentInput = '';
 
   constructor(
@@ -30,6 +31,7 @@ export class FormularioComponent implements OnInit {
     this.usuarios = [];
     this.newUsuarios = [];
     this.img = '';
+    this.edadU = 0;
   }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class FormularioComponent implements OnInit {
       this.usuario = JSON.parse(user);
       this.img = this.usuario.img ? this.usuario.img : '';
       this.currentInput = this.usuario.selectImg ? this.usuario.selectImg : '';
+      this.edadU = this.usuario.edad ? parseInt(this.usuario.edad) : 0;
     } else {
       this.usuario = {
         id: '',
@@ -91,9 +94,14 @@ data = [
   }
 
   edad(e: any){
-    let fecha = this.usuario.fecha ? this.usuario.fecha : '';
-    console.log("mi edad", this.calcularEdad(fecha));
-    console.log("evento", e);
+    let fecha = e;
+    this.edadU = this.calcularEdad(fecha);
+    this.usuario.edad = this.edadU.toString();
+    if(this. edadU < 18){
+      this.usuario.identificacion = "Carnet de minoridad";
+    }else if (this. edadU > 18 && this.usuario.identificacion == "Carnet de minoridad" ){
+      this.usuario.identificacion = '';
+    } 
   }
 
   saveData(){
@@ -134,7 +142,7 @@ data = [
       localStorage.setItem("User", JSON.stringify(this.usuario))
       localStorage.setItem("Usuarios", JSON.stringify(this.newUsuarios))
       let url = '/user/' + this.usuario.id;
-      this.router.navigateByUrl(url);
+      //this.router.navigateByUrl(url);
     }
   }
 
