@@ -1,4 +1,4 @@
-<div class="row  mt-5"  >
+<div class="row  mt-3"  >
     <div style="margin-left: 30px;">
       <h3 class="title">
         &lt; ¡Ya casi terminamos!
@@ -42,27 +42,40 @@
         </div>
       </div>
     </div>
-    <div class="col-6 justify-content-center">
+    <div style="margin-top: -10vh;" class="col-6 justify-content-center">
       <div >
         <span class="title" style="font-size: 25px;">
          Pokemón
         </span>
         <p > Selecciona 3 pokemones que sen parte de tu equipo</p>
       </div>
-      <div style="width: 40vh;">
-        <form role="form" (ngSubmit)="saveData()" [formGroup]="miFormulario"
-        autocomplete="off"  >
 
-          
-          <div class="form-group">
+    <div class="row" style="margin: 0; padding: 0;">
+        <div class="col-4 text-center" style="margin-bottom: 8vh;">
+            <div class="content-poke">
+                <div class="card-body">
+                    <div class="content-pokemon" >
+                        <div class="col info-3 text-left">
+                            <b>#001:</b>  pikachu
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="img-poke">
+                <img src="../../../assets/images/img1.jpg" alt="Admin" class="rounded-circle" style="width: 60%;">
+            </div>
+        </div>
+    </div>
+
+
+      <div style="width: 40vh;">
+        <div class="form-group">
             <div  style="width: 100%;  margin-bottom: 20px;">
-            <button type="submit"
-            >
-              Continuar
-            </button>
+                <button type="submit">
+                    Continuar
+                </button>
           </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

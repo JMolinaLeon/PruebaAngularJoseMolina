@@ -79,6 +79,18 @@ data = [
     { id: 6, name: 'Jugar VideoJuegos'}
   ];
 
+  pokemons = [
+    { id: 1, name: 'poke1'},
+    { id: 2, name: 'poke2'},
+    { id: 3, name: 'poke3'},
+    { id: 4, name: 'poke4' },
+    { id: 5, name: 'poke5'},
+    { id: 6, name: 'poke6'},
+    { id: 7, name: 'poke7' },
+    { id: 8, name: 'poke8'},
+    { id: 9, name: 'poke9'}
+  ];
+
   selectEvent(item: any) {
     this.usuario.pasatiempo = item.name;
   }

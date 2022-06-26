@@ -153,3 +153,41 @@ search_select_box{
     .nombre-usuario{
         color: $color-primary;
     }
+
+
+    .pokemon{
+        background-color: gray;
+        position: absolute;
+        margin-top: 10vh;
+        height: 15vh;
+        width: 80%;
+    }
+
+    .content-pokemon{
+        background-color: $color-primary;
+        border-radius: 30px !important;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .content-poke{
+        position: absolute;
+        margin-top: 10vh;
+        background-color: rgb(182, 175, 175);
+        border-radius: 10px;
+        height: 10vh;
+        width: 80%;
+    }
+
+
+    .info-3{
+        color:  white;
+        font-size: 1rem;
+        margin-left: 10px;
+        padding: 0 !important;
+    }
+
+    .img-poke{
+        position: relative;
+        width: 90%;
+    }
