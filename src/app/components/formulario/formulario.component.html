@@ -61,7 +61,7 @@
                 <ng-autocomplete
                   [data]="data"
                   [searchKeyword]="keyword"
-                  placeholder="Pasatiempo Favorito"
+                  [placeholder]="usuario.pasatiempo ? usuario.pasatiempo : 'Pasatiempo Favorito'"
                   (selected)='selectEvent($event)'
                   [itemTemplate]="itemTemplate"
                   (inputCleared)="searchCleared()"

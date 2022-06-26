@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../Models/usuario';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -22,7 +23,9 @@ export class FormularioComponent implements OnInit {
   public img: string;
   currentInput = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router) {
     this.usuario = new Usuario();
     this.usuarios = [];
     this.newUsuarios = [];
@@ -111,6 +114,8 @@ data = [
       }
       localStorage.setItem("User", JSON.stringify(this.usuario))
       localStorage.setItem("Usuarios", JSON.stringify(this.newUsuarios))
+      let url = '/user/' + this.usuario.id;
+      this.router.navigateByUrl(url);
     }
   }
 
