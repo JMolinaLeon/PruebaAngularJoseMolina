@@ -82,7 +82,7 @@
         <div class="form-group">
           <div  style="width: 100%;  margin-bottom: 20px;">
             <label *ngIf="usuario.fecha !== '' ? true : false" class="label-formulario"><b>Cumpleaños*</b></label>
-            <input type="date"  [(ngModel)]='usuario.fecha' formControlName="fecha"
+            <input type="date" (ngModelChange)="edad($event);"  [(ngModel)]='usuario.fecha' formControlName="fecha"
             class="form-control" style="height: 5vh; font-size: 13px;" placeholder="Cumpleaños"
             [ngClass]="usuario.fecha !== '' ? 'input-form-1' : 'input-form-2' " />
           </div>

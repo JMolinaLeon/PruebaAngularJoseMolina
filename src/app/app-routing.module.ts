@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path: 'home', component: FormularioComponent},
-  {path: 'user/:id', component: PokemonsComponent},
+  {path: 'user/:id', component: UserComponent},
   {path: 'perfil/:id', component: PerfilComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: 'home', pathMatch: 'full'},

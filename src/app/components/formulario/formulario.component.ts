@@ -77,6 +77,25 @@ data = [
     this.usuario.pasatiempo = '';
   }
 
+  calcularEdad(fecha: string) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    return edad;
+  }
+
+  edad(e: any){
+    let fecha = this.usuario.fecha ? this.usuario.fecha : '';
+    console.log("mi edad", this.calcularEdad(fecha));
+    console.log("evento", e);
+  }
+
   saveData(){
     if(this.miFormulario.valid) {
 
