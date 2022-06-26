@@ -1,12 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../../Models/usuario';
-
-
-
 
 @Component({
   selector: 'app-formulario',
@@ -50,25 +44,12 @@ data = [
     { id: 6, name: 'Jugar VideoJuegos'}
   ];
 
-
   selectEvent(item: any) {
-    console.log("selectEvent", item)
     this.usuario.pasatiempo = item.name;
-  }
-
-  onChangeSearch(val: any) {
-    console.log("onChangeSearch", val)
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
   }
 
   searchCleared(){
     this.usuario.pasatiempo = '';
-  }
-  
-  onFocused(e: any){
-    console.log("onFocused", e)
-    // do something when input is focused
   }
 
   saveData(){

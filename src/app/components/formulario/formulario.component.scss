@@ -71,7 +71,19 @@ p{
 
 .btn{
     margin-top: 10px;
-    margin-left: 35%;
+    margin-left: 25%;
+    width: 150px;
+    border: none;
+}
+
+.btn-primary{
+    background-color: $color-primary;
+    color: white;
+}
+
+.btn-secondary{
+    background-color: $color-secondary;
+    color: $dark-gray;
 }
 
 search_select_box{
