@@ -41,6 +41,8 @@ export class FormularioComponent implements OnInit {
       this.img = this.usuario.img ? this.usuario.img : '';
       this.currentInput = this.usuario.selectImg ? this.usuario.selectImg : '';
       this.edadU = this.usuario.edad ? parseInt(this.usuario.edad) : 0;
+      let ident = this.usuario.identificacion?.split("_")[0];
+      this.usuario.identificacion = ident;
     } else {
       this.usuario = {
         id: '',
@@ -97,9 +99,10 @@ data = [
     let fecha = e;
     this.edadU = this.calcularEdad(fecha);
     this.usuario.edad = this.edadU.toString();
+    let ident = this.usuario.identificacion?.split("_")[0];
     if(this. edadU < 18){
       this.usuario.identificacion = "Carnet de minoridad";
-    }else if (this. edadU > 18 && this.usuario.identificacion == "Carnet de minoridad" ){
+    }else if (this. edadU > 18 && ident == "Carnet de minoridad" ){
       this.usuario.identificacion = '';
     } 
   }
@@ -109,6 +112,12 @@ data = [
 
       this.usuario.img = this.img;
       this.usuario.selectImg = this.currentInput;
+      let ident = this.usuario.identificacion?.split("_")[0];
+      if(ident == "Carnet de minoridad" && this.usuario.id !== ''){
+        this.usuario.identificacion = ident + '_' + this.usuario.id;
+      } else if (ident == "Carnet de minoridad" && this.usuario.id === ''){
+        this.usuario.identificacion = ident + '_0';
+      }
 
       let usuarios = localStorage.getItem('Usuarios');
       if(usuarios){
@@ -142,6 +151,8 @@ data = [
       localStorage.setItem("User", JSON.stringify(this.usuario))
       localStorage.setItem("Usuarios", JSON.stringify(this.newUsuarios))
       let url = '/user/' + this.usuario.id;
+      ident = this.usuario.identificacion?.split("_")[0];
+      this.usuario.identificacion = ident;
       //this.router.navigateByUrl(url);
     }
   }
