@@ -113,11 +113,11 @@ data = [
       this.usuario.img = this.img;
       this.usuario.selectImg = this.currentInput;
       let ident = this.usuario.identificacion?.split("_")[0];
-      if(ident == "Carnet de minoridad" && this.usuario.id !== ''){
-        this.usuario.identificacion = ident + '_' + this.usuario.id;
-      } else if (ident == "Carnet de minoridad" && this.usuario.id === ''){
+      if(ident == "Carnet de minoridad" && this.usuario.id === ''){
         this.usuario.identificacion = ident + '_0';
       }
+
+      console.log("usuario ide",this.usuario.identificacion);
 
       let usuarios = localStorage.getItem('Usuarios');
       if(usuarios){
@@ -133,6 +133,11 @@ data = [
         if(searchIndex < 0){
           console.log("no existe");
           this.usuario.id = this.usuarios.length.toString();
+          if(ident == "Carnet de minoridad" && this.usuario.id !== ''){
+            this.usuario.identificacion = ident + '_' + this.usuario.id;
+          } else if (ident == "Carnet de minoridad" && this.usuario.id === ''){
+            this.usuario.identificacion = ident + '_0';
+          }
           this.newUsuarios.push(this.usuario);
         } else {
           this.newUsuarios = this.newUsuarios.map(item => {
