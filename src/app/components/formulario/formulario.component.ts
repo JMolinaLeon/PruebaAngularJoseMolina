@@ -15,23 +15,38 @@ export class FormularioComponent implements OnInit {
     fecha: [ , [ Validators.required] ],
     pasatiempo: [ , [ Validators.required] ],
   })
-  
+
   public usuario: Usuario;
+  public usuarios: Usuario[];
+  public newUsuarios: Usuario[];
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder) {
     this.usuario = new Usuario();
-
+    this.usuarios = [];
+    this.newUsuarios = [];
   }
 
   ngOnInit(): void {
-    this.usuario = {
-      nombre: '',
-      pasatiempo: '',
-      edad: '',
-      identificacion: '',
-      fecha: ''
+    let user = localStorage.getItem('User');
+    if(user){
+      this.usuario = JSON.parse(user) ;
+    } else {
+      this.usuario = {
+        id: '',
+        nombre: '',
+        pasatiempo: '',
+        edad: '',
+        identificacion: '',
+        fecha: ''
+      }
     }
-
+    let usuarios = localStorage.getItem('Usuarios');
+    if(usuarios){
+      this.usuarios = JSON.parse(usuarios) ;
+    } else {
+      this.usuarios = [];
+    }
+    this.newUsuarios = [];
   }
 
 keyword = 'name';
@@ -53,8 +68,40 @@ data = [
   }
 
   saveData(){
-    console.log("datos del empleado", this.usuario);
-    console.log(this.miFormulario);
+    if(this.miFormulario.valid) {
+
+      let usuarios = localStorage.getItem('Usuarios');
+      if(usuarios){
+        this.usuarios = JSON.parse(usuarios) ;
+      } else {
+        this.usuarios = [];
+      }
+
+      this.newUsuarios = [];
+      this.newUsuarios = [ ...this.usuarios ];
+      if(this.usuarios.length > 0){
+        const searchIndex = this.usuarios.findIndex((u) => u.identificacion==this.usuario.identificacion);
+        if(searchIndex < 0){
+          console.log("no existe");
+          this.usuario.id = this.usuarios.length.toString();
+          this.newUsuarios.push(this.usuario);
+        } else {
+          this.newUsuarios = this.newUsuarios.map(item => {
+            if(item.identificacion == this.usuario.identificacion){
+              let id = item.id;
+              this.usuario.id = id;
+              item = this.usuario;
+            }
+            return item;
+          })
+        }
+      } else {
+        this.usuario.id = '0';
+        this.newUsuarios.push(this.usuario);
+      }
+      localStorage.setItem("User", JSON.stringify(this.usuario))
+      localStorage.setItem("Usuarios", JSON.stringify(this.newUsuarios))
+    }
   }
 
 }
